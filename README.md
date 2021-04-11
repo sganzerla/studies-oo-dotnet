@@ -4,7 +4,7 @@ Reforçando estudos em C#
 
 ## Índice
 
-    01. [Primeiros Passos](01-Primeiros Passos/)
+    01. [Primeiros Passos](_01-Primeiros Passos/)
     02. [Introdução à Orientação a Objetos](02-Introdução à Orientação a Objetos/)
     03. [Entendendo Herança e Interface][03-Entendendo Herança e Interface/)
     04. [Entendendo Exceções][04-Entendendo Exceções/)
