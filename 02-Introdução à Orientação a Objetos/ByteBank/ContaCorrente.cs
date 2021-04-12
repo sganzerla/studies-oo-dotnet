@@ -5,14 +5,49 @@ namespace ByteBank
     public class ContaCorrente
     {
         public Cliente Titular { get; private set; }
-        public int NumeroAgencia { get; private set; }
-        public int Numero { get; private set; }
-        public double Saldo { get; private set; } = 100;
+        private int _agencia;
+        public int Agencia
+        {
+            get
+            {
+                return _agencia;
+            }
+            private set
+            {
+                if (value < 0) return;
+                _agencia = value;
+            }
+        }
+
+        private int _numero;
+        public int Numero
+        {
+            get
+            {
+                return _numero;
+            }
+            private set
+            {
+                if (value < 0) return;
+                _numero = value;
+            }
+        }
+
+        private double _saldo = 100;
+        public double Saldo
+        {
+            get { return _saldo; }
+            private set
+            {
+                if (value < 0) return;
+                _saldo = value;
+            }
+        }
 
         public ContaCorrente(Cliente cliente, int numeroAgencia, int numero)
         {
             Titular = cliente;
-            NumeroAgencia = numeroAgencia;
+            Agencia = numeroAgencia;
             Numero = numero;
 
         }
@@ -40,7 +75,7 @@ namespace ByteBank
             if (Sacar(valor))
             {
                 Console.WriteLine("-----------------------------------------------------------------------------");
-                Console.WriteLine("Transferindo ... " + valor + " de " + Titular + " para " + contaDestino.Titular.Nome);
+                Console.WriteLine("Transferindo ... " + valor + " de " + Titular.Nome + " para " + contaDestino.Titular.Nome);
                 Console.WriteLine("");
                 contaDestino.Depositar(valor);
             }
@@ -50,7 +85,7 @@ namespace ByteBank
         {
             Console.WriteLine("--------------------------------------");
             Console.WriteLine("Titular: " + Titular.Nome);
-            Console.WriteLine("Nr Agência: " + NumeroAgencia);
+            Console.WriteLine("Agência: " + Agencia);
             Console.WriteLine("Número: " + Numero);
             Console.WriteLine("Saldo: " + Saldo);
             Console.WriteLine("");
