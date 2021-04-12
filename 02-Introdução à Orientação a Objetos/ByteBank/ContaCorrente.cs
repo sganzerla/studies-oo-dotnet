@@ -12,7 +12,9 @@ namespace ByteBank
         public bool Sacar(double valor)
         {
             if (saldo < valor) return false;
+            Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine("Sacando ... " + valor + " de " + titular);
+            Console.WriteLine("");
             saldo -= valor;
             return true;
         }
@@ -20,17 +22,20 @@ namespace ByteBank
         public void Depositar(double valor)
         {
             saldo += valor;
+            Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine("Depositando ... " + valor + " para " + titular);
+            Console.WriteLine("");
         }
 
-        public bool Transferir(double valor, ContaCorrente contaDestino)
+        public void Transferir(double valor, ContaCorrente contaDestino)
         {
             if (Sacar(valor))
             {
+                Console.WriteLine("-----------------------------------------------------------------------------");
                 Console.WriteLine("Transferindo ... " + valor + " de " + titular + " para " + contaDestino.titular);
+                Console.WriteLine("");
                 contaDestino.Depositar(valor);
             }
-            return false;
         }
 
         public void WriteLine()

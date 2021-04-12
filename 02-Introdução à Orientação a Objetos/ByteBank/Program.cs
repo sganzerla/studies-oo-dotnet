@@ -24,7 +24,7 @@ namespace ByteBank
             contaDaGabriela.WriteLine();
             contaDaGabriela.Depositar(200);
             contaDaGabrielaCosta.WriteLine();
-            contaDaGabriela.Transferir(200, contaDaGabrielaCosta);
+            contaDaGabriela.Transferir(78, contaDaGabrielaCosta);
             contaDaGabriela.WriteLine();
             contaDaGabrielaCosta.WriteLine();
 
