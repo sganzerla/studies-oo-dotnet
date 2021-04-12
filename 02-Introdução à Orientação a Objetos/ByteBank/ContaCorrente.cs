@@ -4,7 +4,7 @@ namespace ByteBank
 {
     public class ContaCorrente
     {
-        public string titular { get; set; }
+        public Cliente titular { get; set; }
         public int numeroAgencia { get; set; }
         public int numero { get; set; }
         public double saldo { get; set; } = 100;
@@ -13,7 +13,7 @@ namespace ByteBank
         {
             if (saldo < valor) return false;
             Console.WriteLine("-----------------------------------------------------------------------------");
-            Console.WriteLine("Sacando ... " + valor + " de " + titular);
+            Console.WriteLine("Sacando ... " + valor + " de " + titular.Nome);
             Console.WriteLine("");
             saldo -= valor;
             return true;
@@ -23,7 +23,7 @@ namespace ByteBank
         {
             saldo += valor;
             Console.WriteLine("-----------------------------------------------------------------------------");
-            Console.WriteLine("Depositando ... " + valor + " para " + titular);
+            Console.WriteLine("Depositando ... " + valor + " para " + titular.Nome);
             Console.WriteLine("");
         }
 
@@ -32,7 +32,7 @@ namespace ByteBank
             if (Sacar(valor))
             {
                 Console.WriteLine("-----------------------------------------------------------------------------");
-                Console.WriteLine("Transferindo ... " + valor + " de " + titular + " para " + contaDestino.titular);
+                Console.WriteLine("Transferindo ... " + valor + " de " + titular + " para " + contaDestino.titular.Nome);
                 Console.WriteLine("");
                 contaDestino.Depositar(valor);
             }
@@ -41,7 +41,7 @@ namespace ByteBank
         public void WriteLine()
         {
             Console.WriteLine("--------------------------------------");
-            Console.WriteLine("Titular: " + titular);
+            Console.WriteLine("Titular: " + titular.Nome);
             Console.WriteLine("Nr Agência: " + numeroAgencia);
             Console.WriteLine("Número: " + numero);
             Console.WriteLine("Saldo: " + saldo);

@@ -7,15 +7,18 @@ namespace ByteBank
         static void Main(string[] args)
         {
 
+            Cliente gabriela = new Cliente("Gabriela", "09230293720", "Reporter");
+            Cliente gabrielaCosta = new Cliente("Gabriela Costa", "2323123892", "Radialista");
+
             ContaCorrente contaDaGabriela = new ContaCorrente();
 
-            contaDaGabriela.titular = "Gabriela";
+            contaDaGabriela.titular = gabriela;
             contaDaGabriela.numeroAgencia = 4545;
             contaDaGabriela.numero = 3334;
 
             ContaCorrente contaDaGabrielaCosta = new ContaCorrente();
 
-            contaDaGabrielaCosta.titular = "Gabriela Costa";
+            contaDaGabrielaCosta.titular = gabrielaCosta;
             contaDaGabrielaCosta.numeroAgencia = 4545;
             contaDaGabrielaCosta.numero = 3334;
 
