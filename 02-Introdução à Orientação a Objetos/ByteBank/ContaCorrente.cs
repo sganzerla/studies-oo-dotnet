@@ -4,6 +4,8 @@ namespace ByteBank
 {
     public class ContaCorrente
     {
+
+        public static int TotalDeContasCriadas { get; private set; }
         public Cliente Titular { get; private set; }
         private int _agencia;
         public int Agencia
@@ -49,6 +51,8 @@ namespace ByteBank
             Titular = cliente;
             Agencia = numeroAgencia;
             Numero = numero;
+            TotalDeContasCriadas++;
+            Console.WriteLine("Total de contas criadas: " + TotalDeContasCriadas);
 
         }
 
@@ -89,8 +93,6 @@ namespace ByteBank
             Console.WriteLine("Número: " + Numero);
             Console.WriteLine("Saldo: " + Saldo);
             Console.WriteLine("");
-
-
         }
 
     }
