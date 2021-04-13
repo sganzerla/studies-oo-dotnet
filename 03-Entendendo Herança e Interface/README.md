@@ -9,6 +9,8 @@
 * Use os modificadores virtual, abstract e override
 * Conheça o modificador de visibilidade protected
 
+![image]("./model.PNG")
+
 ## Fonte
 
 <https://cursos.alura.com.br/course/csharp-parte-3-heranca-interfaces-polimorfismo>

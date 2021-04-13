@@ -1,9 +1,14 @@
+using System;
+using ByteBank.Sistemas;
+
 namespace ByteBank.Funcionarios
 {
-    public class GerenteDeConta : Funcionario
+    public class GerenteDeConta : FuncionarioAutenticavel
     {
-        public GerenteDeConta(string nome, string cpf, double salario) : base(nome, cpf, salario)
+        public GerenteDeConta(string nome, string cpf, double salario, string senha) : base(nome, cpf, salario, senha)
         {
+            Senha = senha;
+            Console.WriteLine("Criando ... " + typeof(GerenteDeConta));
         }
 
         public override double GetBonificacao()
