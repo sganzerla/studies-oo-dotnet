@@ -9,7 +9,7 @@
 * Use os modificadores virtual, abstract e override
 * Conheça o modificador de visibilidade protected
 
-![image]("./model.PNG")
+![image](model.PNG)
 
 ## Fonte
 
