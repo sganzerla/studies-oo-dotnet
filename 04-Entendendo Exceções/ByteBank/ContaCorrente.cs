@@ -25,10 +25,10 @@ namespace ByteBank
         {
 
             if (agencia <= 0)
-                throw new ArgumentException($"Parâmetro {nameOf(agencia)} deve ser maior que zero.");
+                throw new ArgumentException($"Parâmetro {nameof(agencia)} deve ser maior que zero.", nameof(agencia));
 
             if (numero <= 0)
-                throw new ArgumentException($"Parâmetro {nameOf(numero)} deve ser maior que zero.");
+                throw new ArgumentException($"Parâmetro {nameof(numero)} deve ser maior que zero.", nameof(numero));
 
             Titular = cliente;
             Agencia = agencia;
@@ -36,7 +36,6 @@ namespace ByteBank
             TotalDeContasCriadas++;
             try
             {
-
                 TaxaOperacao = 30 / TotalDeContasCriadas;
             }
             catch (DivideByZeroException ex)
@@ -46,17 +45,20 @@ namespace ByteBank
             }
             Console.WriteLine("Total de contas criadas: " + TotalDeContasCriadas);
             Console.WriteLine("Taxa de operação: " + TaxaOperacao);
-
         }
 
-        public bool Sacar(double valor)
+        public void Sacar(double valor)
         {
-            if (_saldo < valor) return false;
+            if (valor < 0)
+                throw new ArgumentException("Valor inválido para o saque.", nameof(valor));
+
+            if (_saldo < valor)
+                throw new SaldoInsuficienteException(Saldo, valor);
+
             Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine("Sacando ... " + valor + " de " + Titular.Nome);
             Console.WriteLine("");
             _saldo -= valor;
-            return true;
         }
 
         public void Depositar(double valor)
@@ -69,13 +71,17 @@ namespace ByteBank
 
         public void Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (Sacar(valor))
-            {
-                Console.WriteLine("-----------------------------------------------------------------------------");
-                Console.WriteLine("Transferindo ... " + valor + " de " + Titular.Nome + " para " + contaDestino.Titular.Nome);
-                Console.WriteLine("");
-                contaDestino.Depositar(valor);
-            }
+
+            if (valor < 0)
+                throw new ArgumentException("Valor inválido para tranferência.", nameof(valor));
+
+
+            Sacar(valor);
+            Console.WriteLine("-----------------------------------------------------------------------------");
+            Console.WriteLine("Transferindo ... " + valor + " de " + Titular.Nome + " para " + contaDestino.Titular.Nome);
+            Console.WriteLine("");
+            contaDestino.Depositar(valor);
+
         }
 
         public void WriteLine()

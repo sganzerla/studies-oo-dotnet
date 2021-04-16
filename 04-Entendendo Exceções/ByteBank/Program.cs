@@ -10,17 +10,34 @@ namespace ByteBank
             Cliente gabriela = new Cliente("Gabriela", "09230293720", "Reporter");
             Cliente gabrielaCosta = new Cliente("Gabriela Costa", "2323123892", "Radialista");
 
-            ContaCorrente contaDaGabriela = new ContaCorrente(gabriela, 0, 222);
 
-            ContaCorrente contaDaGabrielaCosta = new ContaCorrente(gabrielaCosta, 22, 2222);
 
-            contaDaGabrielaCosta.Sacar(20);
-            contaDaGabriela.WriteLine();
-            contaDaGabriela.Depositar(200);
-            contaDaGabrielaCosta.WriteLine();
-            contaDaGabriela.Transferir(78, contaDaGabrielaCosta);
-            contaDaGabriela.WriteLine();
-            contaDaGabrielaCosta.WriteLine();
+            try
+            {
+                ContaCorrente contaDaGabriela = new ContaCorrente(gabriela, 10, 222);
+                ContaCorrente contaDaGabrielaCosta = new ContaCorrente(gabrielaCosta, 22, 2222);
+                contaDaGabrielaCosta.Sacar(30);
+                contaDaGabriela.WriteLine();
+                contaDaGabriela.Depositar(200);
+                contaDaGabrielaCosta.WriteLine();
+                contaDaGabriela.Transferir(500, contaDaGabrielaCosta);
+                contaDaGabriela.WriteLine();
+                contaDaGabrielaCosta.WriteLine();
+
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            catch (SaldoInsuficienteException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+
+
+
 
             Console.ReadLine();
 
