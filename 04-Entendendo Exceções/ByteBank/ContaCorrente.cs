@@ -63,6 +63,9 @@ namespace ByteBank
 
         public void Depositar(double valor)
         {
+            if (valor < 0)
+                throw new ArgumentException("Valor inválido para o deposito.", nameof(valor));
+
             _saldo += valor;
             Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine("Depositando ... " + valor + " para " + Titular.Nome);

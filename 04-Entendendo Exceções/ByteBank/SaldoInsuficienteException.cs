@@ -16,7 +16,7 @@ namespace ByteBank
         {
         }
 
-        public SaldoInsuficienteException(double saldo, double saque) : this("Tentativa de saque do valor de " + saque + " em uma conta com saldo " + saldo + ".")
+        public SaldoInsuficienteException(double saldo, double saque) : this("Exception: Tentativa de saque do valor de " + saque + " em uma conta com saldo " + saldo + ".")
         {
             Saldo = saldo;
             Saque = saque;
