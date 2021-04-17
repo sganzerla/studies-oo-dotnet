@@ -21,7 +21,7 @@ namespace ByteBank
                 contaDaGabriela.Depositar(200);
                 contaDaGabrielaCosta.WriteLine();
                 // contaDaGabriela.Transferir(500, contaDaGabrielaCosta); // erro
-                contaDaGabriela.Transferir(200, contaDaGabrielaCosta);
+                contaDaGabriela.Transferir(2300, contaDaGabrielaCosta);
                 contaDaGabriela.WriteLine();
                 contaDaGabrielaCosta.WriteLine();
             }
@@ -37,9 +37,11 @@ namespace ByteBank
                 Console.WriteLine(ex.StackTrace);
                 return;
             }
-            catch (Exception ex)
+            catch (OperacaoFinanceiraException ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.InnerException.StackTrace);
             }
             Console.ReadLine();
         }

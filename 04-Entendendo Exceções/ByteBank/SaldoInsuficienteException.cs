@@ -2,7 +2,7 @@ using System;
 
 namespace ByteBank
 {
-    public class SaldoInsuficienteException : Exception
+    public class SaldoInsuficienteException : OperacaoFinanceiraException
     {
 
         public double Saldo { get; }
@@ -20,6 +20,11 @@ namespace ByteBank
         {
             Saldo = saldo;
             Saque = saque;
+        }
+
+        public SaldoInsuficienteException(string mensagem, Exception exceptionInterna) : base(mensagem, exceptionInterna)
+        {
+
         }
 
     }

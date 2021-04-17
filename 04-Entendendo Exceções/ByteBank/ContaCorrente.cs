@@ -87,10 +87,10 @@ namespace ByteBank
             {
                 Sacar(valor);
             }
-            catch (SaldoInsuficienteException)
+            catch (SaldoInsuficienteException ex)
             {
                 ContadorTransferenciasNaoPermitidas++;
-                throw;
+                throw new OperacaoFinanceiraException("Exception protegendo informações.", ex);
             }
             Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine("Transferindo ... " + valor + " de " + Titular.Nome + " para " + contaDestino.Titular.Nome);
