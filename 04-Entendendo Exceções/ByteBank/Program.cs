@@ -1,10 +1,42 @@
 ﻿using System;
+using System.IO;
 
 namespace ByteBank
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            CarregarContas();
+            Console.ReadLine();
+        }
+
+        private static void CarregarContas()
+        {
+            // LeitorDeArquivo leitor = null;
+            // try
+            // {
+            //     leitor = new LeitorDeArquivo("contas.txt");
+            //     leitor.LerProximaLinha();
+            //     leitor.LerProximaLinha();
+            //     leitor.Fechar();
+            // }
+            // finally
+            // {
+            //     if (leitor != null)
+            //         leitor.Fechar();
+            // }
+            using (LeitorDeArquivo leitor = new LeitorDeArquivo("contas.txt"))
+            {
+
+                leitor.LerProximaLinha();
+                leitor.LerProximaLinha();
+            };
+
+
+        }
+
+        public static void TestaInnerException()
         {
             Cliente gabriela = new Cliente("Gabriela", "09230293720", "Reporter");
             Cliente gabrielaCosta = new Cliente("Gabriela Costa", "2323123892", "Radialista");
@@ -43,7 +75,6 @@ namespace ByteBank
                 Console.WriteLine(ex.StackTrace);
                 Console.WriteLine(ex.InnerException.StackTrace);
             }
-            Console.ReadLine();
         }
     }
 }
