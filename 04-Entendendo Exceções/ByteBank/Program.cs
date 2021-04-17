@@ -6,12 +6,8 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
-
             Cliente gabriela = new Cliente("Gabriela", "09230293720", "Reporter");
             Cliente gabrielaCosta = new Cliente("Gabriela Costa", "2323123892", "Radialista");
-
-
-
             try
             {
                 ContaCorrente contaDaGabriela = new ContaCorrente(gabriela, 10, 222);
@@ -25,27 +21,27 @@ namespace ByteBank
                 contaDaGabriela.Depositar(200);
                 contaDaGabrielaCosta.WriteLine();
                 // contaDaGabriela.Transferir(500, contaDaGabrielaCosta); // erro
-                contaDaGabriela.Transferir(200, contaDaGabrielaCosta); 
+                contaDaGabriela.Transferir(200, contaDaGabrielaCosta);
                 contaDaGabriela.WriteLine();
                 contaDaGabrielaCosta.WriteLine();
-
             }
             catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 return;
             }
             catch (SaldoInsuficienteException ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 return;
             }
-
-
-
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.ReadLine();
-
         }
     }
 }
