@@ -10,7 +10,7 @@ namespace ByteBank.Modelos.Funcionarios
             Console.WriteLine("Criando ... " + typeof(GerenteDeConta));
         }
 
-        public override double GetBonificacao()
+        internal protected override double GetBonificacao()
         {
             return Salario * 0.5;
         }
