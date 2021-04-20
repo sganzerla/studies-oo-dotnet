@@ -3,40 +3,33 @@ namespace ByteBank
 {
     public class ExtratorValorDeArgumentosURL
     {
-
+        private readonly string _argumentos;
         public string URL { get; }
         public ExtratorValorDeArgumentosURL(string url)
         {
 
             if (string.IsNullOrEmpty(url))
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentException("O argumento " + nameof(url) + " não pode ser vazio ou nulo.");
 
+            int indiceInterrogacao = url.IndexOf('?');
+            _argumentos = url.Substring(indiceInterrogacao + 1);
             URL = url;
 
         }
 
-        public void RemoveStringAPartirDeIndice(string indice)
+
+        public string GetValor(string nomeParametro)
         {
-            GetInicioPrint();
-            int indiceTexto = URL.IndexOf(indice);
-            Console.WriteLine("Remover do texto \"" + URL + "\" a partir do índice gerado por " + indice + ".");
-            Console.WriteLine("Índice: " + indice);
-            Console.WriteLine(URL.Substring(indiceTexto + 1));
-            GetFimPrint();
+            string termo = nomeParametro + "=";
+            int indiceTermo = _argumentos.IndexOf(termo);
+            string resultado = _argumentos.Substring(indiceTermo + termo.Length);
+            int indiceEComercial = resultado.IndexOf('&');
+
+            if (indiceEComercial == -1)
+                return resultado;
+
+            return resultado.Remove(indiceEComercial);
         }
-        public void RemoveQuantidadeDeStringInicio(int quantidade)
-        {
-            GetInicioPrint();
-            Console.WriteLine("Remover do texto \"" + URL + "\" as " + quantidade + " primeiras letras.");
-            Console.WriteLine(URL.Substring(quantidade));
-            GetFimPrint();
-        }
-
-        private static void GetInicioPrint() =>
-            Console.WriteLine("-------------------------------------------------");
-
-
-        private static void GetFimPrint() =>
-            Console.WriteLine("");
+      
     }
 }

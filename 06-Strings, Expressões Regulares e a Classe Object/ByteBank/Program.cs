@@ -6,12 +6,13 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
-            var texto = "pagina?argumentos";
-            ExtratorValorDeArgumentosURL extrator = new ExtratorValorDeArgumentosURL(texto);
-            extrator.RemoveQuantidadeDeStringInicio(6);
+            string urlParametros = "https://www.ssdd.com/cambio?moeda=real&moedaDist=dolar";
+            ExtratorValorDeArgumentosURL extratorValor = new ExtratorValorDeArgumentosURL(urlParametros);
+            string valor = extratorValor.GetValor("moeda");
+            Console.WriteLine(valor);
 
-            extrator.RemoveStringAPartirDeIndice("?");
-
+            valor = extratorValor.GetValor("moedaDist");
+            Console.WriteLine(valor);
             Console.ReadLine();
         }
 
