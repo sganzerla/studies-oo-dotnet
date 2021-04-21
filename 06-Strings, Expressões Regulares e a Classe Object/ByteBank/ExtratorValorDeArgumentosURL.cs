@@ -20,8 +20,8 @@ namespace ByteBank
 
         public string GetValor(string nomeParametro)
         {
-            string termo = nomeParametro + "=";
-            int indiceTermo = _argumentos.IndexOf(termo);
+            string termo = nomeParametro.ToUpper() + "=";
+            int indiceTermo = _argumentos.ToUpper().IndexOf(termo);
             string resultado = _argumentos.Substring(indiceTermo + termo.Length);
             int indiceEComercial = resultado.IndexOf('&');
 
@@ -30,6 +30,6 @@ namespace ByteBank
 
             return resultado.Remove(indiceEComercial);
         }
-      
+
     }
 }
