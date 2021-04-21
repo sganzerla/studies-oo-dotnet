@@ -5,6 +5,10 @@ namespace ByteBank
     {
         private readonly string _argumentos;
         public string URL { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
         public ExtratorValorDeArgumentosURL(string url)
         {
 
@@ -17,6 +21,11 @@ namespace ByteBank
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nomeParametro"></param>
+        /// <returns></returns>
 
         public string GetValor(string nomeParametro)
         {
@@ -29,6 +38,20 @@ namespace ByteBank
                 return resultado;
 
             return resultado.Remove(indiceEComercial);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            ExtratorValorDeArgumentosURL extrato = obj as ExtratorValorDeArgumentosURL;
+            if (extrato == null)
+                return false;
+
+            return URL == extrato.URL && _argumentos == extrato._argumentos;
         }
 
     }
