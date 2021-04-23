@@ -15,10 +15,22 @@ namespace ByteBank.SistemaAgencia
             lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 15));
             lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 3, 16));
             lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 17));
-            lista.EscreverListaNaTela();
+            ListarItens(lista);
             lista.Remover(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 15));
-            lista.EscreverListaNaTela();
+            ListarItens(lista);
             Console.ReadLine();
+        }
+
+
+        static void ListarItens(ListaDeContaCorrente lista)
+        {
+            for (int i = 0; i < lista.Tamanho; i++)
+            {
+                ContaCorrente itemAtual = lista.GetContaCorrenteNoIndice(i);
+                Console.WriteLine($"índice: {i} Agência: {itemAtual.Agencia} Conta: {itemAtual.Numero}  ");
+
+            }
+
         }
 
         static void TestaArrayContaCorrente()
