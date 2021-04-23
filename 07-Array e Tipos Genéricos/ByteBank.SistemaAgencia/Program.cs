@@ -9,9 +9,11 @@ namespace ByteBank.SistemaAgencia
         {
 
             ListaDeContaCorrente lista = new ListaDeContaCorrente();
-            var cliente = new Cliente("Cliente A", "019231029371", "reporter");
-            lista.Adicionar(new ContaCorrente(cliente, 123, 12312132));
+            lista.Adicionar(item: new ContaCorrente(new Cliente("Cliente A", "019231029371", "reporter"), agencia: 123,  12312132));
             lista.Adicionar(new ContaCorrente(new Cliente("Cliente B", "019231029371", "surfista"), 1212, 343423));
+            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 7678, 4554));
+            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 7678, 4554));
+            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 7678, 4554));
             lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 7678, 4554));
 
 
