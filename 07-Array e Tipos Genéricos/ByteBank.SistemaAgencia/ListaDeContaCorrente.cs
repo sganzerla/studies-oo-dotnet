@@ -14,6 +14,17 @@ namespace ByteBank.SistemaAgencia
             _itens = new ContaCorrente[capacidadeInicial];
             _proximaPosicao = 0;
         }
+        /// <summary>
+        /// Indexador
+        /// </summary>
+        /// <value></value>
+        public ContaCorrente this[int indice]
+        {
+            get
+            {
+                return GetContaCorrenteNoIndice(indice);
+            }
+        }
 
         public void Adicionar(ContaCorrente item)
         {
@@ -51,6 +62,9 @@ namespace ByteBank.SistemaAgencia
 
             return _itens[indice];
         }
+
+
+
 
         private void VerificaCapacidade(int tamanhoNecessario)
         {

@@ -26,7 +26,7 @@ namespace ByteBank.SistemaAgencia
         {
             for (int i = 0; i < lista.Tamanho; i++)
             {
-                ContaCorrente itemAtual = lista.GetContaCorrenteNoIndice(i);
+                ContaCorrente itemAtual = lista[i];
                 Console.WriteLine($"índice: {i} Agência: {itemAtual.Agencia} Conta: {itemAtual.Numero}  ");
 
             }
