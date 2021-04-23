@@ -9,12 +9,15 @@ namespace ByteBank.SistemaAgencia
         {
 
             ListaDeContaCorrente lista = new ListaDeContaCorrente();
-            lista.Adicionar(item: new ContaCorrente(new Cliente("Cliente A", "019231029371", "reporter"), agencia: 1, 12));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente B", "019231029371", "surfista"), 1, 13));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 1, 14));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 15));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 3, 16));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 17));
+            ContaCorrente[] contas = new ContaCorrente[]{
+                new ContaCorrente(new Cliente("Cliente A", "019231029371", "reporter"), agencia: 1, 12),
+                new ContaCorrente(new Cliente("Cliente B", "019231029371", "surfista"), 1, 13),
+                new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 1, 14),
+                new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 15),
+                new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 3, 16),
+                new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 17)
+            };
+            lista.AdicionarVarios(contas);
             ListarItens(lista);
             lista.Remover(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 15));
             ListarItens(lista);
