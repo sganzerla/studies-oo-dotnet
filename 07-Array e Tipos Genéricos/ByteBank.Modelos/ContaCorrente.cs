@@ -25,6 +25,11 @@ namespace ByteBank.Modelos
             }
         }
 
+        public ContaCorrente()
+        {
+
+        }
+
         /// <summary>
         /// Cria uma instância de ContaCorrente com os arumentos utilizados
         /// </summary>
