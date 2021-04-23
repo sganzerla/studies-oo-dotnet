@@ -9,14 +9,15 @@ namespace ByteBank.SistemaAgencia
         {
 
             ListaDeContaCorrente lista = new ListaDeContaCorrente();
-            lista.Adicionar(item: new ContaCorrente(new Cliente("Cliente A", "019231029371", "reporter"), agencia: 123,  12312132));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente B", "019231029371", "surfista"), 1212, 343423));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 7678, 4554));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 7678, 4554));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 7678, 4554));
-            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 7678, 4554));
-
-
+            lista.Adicionar(item: new ContaCorrente(new Cliente("Cliente A", "019231029371", "reporter"), agencia: 1, 12));
+            lista.Adicionar(new ContaCorrente(new Cliente("Cliente B", "019231029371", "surfista"), 1, 13));
+            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 1, 14));
+            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 15));
+            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 3, 16));
+            lista.Adicionar(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 17));
+            lista.EscreverListaNaTela();
+            lista.Remover(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 15));
+            lista.EscreverListaNaTela();
             Console.ReadLine();
         }
 
