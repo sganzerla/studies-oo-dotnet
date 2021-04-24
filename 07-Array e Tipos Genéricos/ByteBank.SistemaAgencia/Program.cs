@@ -8,6 +8,14 @@ namespace ByteBank.SistemaAgencia
         static void Main(string[] args)
         {
 
+            Lista<int> idades = new Lista<int>();
+            idades.Adicionar(1);
+            idades.AdicionarVarios(1, 2, 3, 4);
+            Console.ReadLine();
+        }
+
+        static void TesteContaCorrente()
+        {
             ListaDeContaCorrente lista = new ListaDeContaCorrente();
             ContaCorrente[] contas = new ContaCorrente[]{
                 new ContaCorrente(new Cliente("Cliente A", "019231029371", "reporter"), agencia: 1, 12),
@@ -21,9 +29,7 @@ namespace ByteBank.SistemaAgencia
             ListarItens(lista);
             lista.Remover(new ContaCorrente(new Cliente("Cliente C", "019231029371", "pedreiro"), 2, 15));
             ListarItens(lista);
-            Console.ReadLine();
         }
-
 
         static void ListarItens(ListaDeContaCorrente lista)
         {
