@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using ByteBank.Modelos;
+using ByteBank.SistemaAgencia.Extensoes;
 
 namespace ByteBank.SistemaAgencia
 {
@@ -9,10 +10,11 @@ namespace ByteBank.SistemaAgencia
         static void Main(string[] args)
         {
 
-            List<int> idades = new List<int>();
+            var idades = new List<int>();
             idades.Add(1);
             idades.Add(2);
-            idades.AddRange(idades);
+            // idades.AddRange(idades);
+            idades.AdicionarVarios(2, 2, 4, 55, 63);
 
             for (var i = 0; i < idades.Count; i++)
             {
