@@ -26,6 +26,11 @@ namespace ByteBank.SistemaAgencia
 
             foreach (var item in contas)
                 Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
+            Console.WriteLine("-----------------------");
+            contas.Sort(new ComparadorContaCorrentePorAgencia());
+
+            foreach (var item in contas)
+                Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
 
             Console.ReadLine();
         }
