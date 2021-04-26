@@ -2,6 +2,7 @@
 using System;
 using ByteBank.Modelos;
 using ByteBank.SistemaAgencia.Extensoes;
+using System.Linq;
 
 namespace ByteBank.SistemaAgencia
 {
@@ -15,21 +16,36 @@ namespace ByteBank.SistemaAgencia
                 new ContaCorrente(new Cliente("Carrel", "2837238723", "Comediante"), 899, 563),
                 new ContaCorrente(new Cliente("Andy", "1231231231", "Produtor"), 343434, 12),
                 new ContaCorrente(new Cliente("Vlad", "1231231231", "Produtor"), 112, 565),
+                null,
                 new ContaCorrente(new Cliente("Bet", "1231231231", "Produtor"), 65879, 33),
             };
 
             foreach (var item in contas)
-                Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
+                if (item != null)
+                    Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
 
             Console.WriteLine("-----------------------");
             contas.Sort();
 
             foreach (var item in contas)
-                Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
+                if (item != null)
+                    Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
+
+
             Console.WriteLine("-----------------------");
             contas.Sort(new ComparadorContaCorrentePorAgencia());
 
             foreach (var item in contas)
+                if (item != null)
+                    Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
+
+            Console.WriteLine("-----------------------");
+
+            IOrderedEnumerable<ContaCorrente> ordenadas = contas
+            .Where(conta => conta != null)
+            .OrderBy(conta => conta.Titular.Nome);
+
+            foreach (var item in ordenadas)
                 Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
 
             Console.ReadLine();
