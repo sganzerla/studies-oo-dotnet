@@ -5,7 +5,7 @@ namespace ByteBank.Modelos
     /// <summary>
     /// Define uma Conta Corrente do banco ByteBank
     /// </summary>
-    public class ContaCorrente
+    public class ContaCorrente : IComparable
     {
         public static double TaxaOperacao { get; private set; }
         public static int TotalDeContasCriadas { get; private set; }
@@ -154,5 +154,30 @@ namespace ByteBank.Modelos
             Console.WriteLine("");
         }
 
+        /// <summary>
+        /// Compara item recebido com a instância atual da classe e retorna um valor inteiro como resultado 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>
+        /// Quando instância é menor que o objeto recebido retorna número negativo
+        /// Quando são equivalentes retorna zero
+        /// Quando instância é maior que o objeto recebido retorna número positivo
+        /// </returns>
+        /// <exception cref="ArgumentException">Exceção será lançada quando o parâmetro <paramref name="obj"/> não for uma instância da classe <see cref="ContaCorrente"/> </exception>
+        public int CompareTo(object obj)
+        {
+
+            var outraConta = obj as ContaCorrente;
+            if (outraConta == null)
+                throw new ArgumentNullException($"Exception: Argumento não é do tipo {nameof(ContaCorrente)} e não pode ser comparado.");
+
+            if (Numero < outraConta.Numero)
+                return -1;
+
+            if (Numero > outraConta.Numero)
+                return 1;
+
+            return 0;
+        }
     }
 }

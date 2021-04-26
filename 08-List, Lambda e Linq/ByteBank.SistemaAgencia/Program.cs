@@ -10,17 +10,56 @@ namespace ByteBank.SistemaAgencia
         static void Main(string[] args)
         {
 
+            var contas = new List<ContaCorrente>(){
+
+                new ContaCorrente(new Cliente("Carrel", "2837238723", "Comediante"), 899, 563),
+                new ContaCorrente(new Cliente("Andy", "1231231231", "Produtor"), 343434, 12),
+                new ContaCorrente(new Cliente("Vlad", "1231231231", "Produtor"), 112, 565),
+                new ContaCorrente(new Cliente("Bet", "1231231231", "Produtor"), 65879, 33),
+            };
+
+            foreach (var item in contas)
+                Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
+
+            Console.WriteLine("-----------------------");
+            contas.Sort();
+
+            foreach (var item in contas)
+                Console.WriteLine($"Conta número: {item.Numero}, agência: {item.Agencia}, cliente: {item.Titular.Nome}");
+
+            Console.ReadLine();
+        }
+
+        static void TestListString()
+        {
+            var nomes = new List<string>();
+            nomes.Add("Carel");
+            nomes.Add("Andy");
+            nomes.Add("Cesar");
+            nomes.AdicionarVarios("Patrick", "Bob", "Xuxu", "Anna");
+
+            for (var i = 0; i < nomes.Count; i++)
+                Console.WriteLine(nomes[i]);
+
+            Console.WriteLine("---------");
+            nomes.Sort();
+            for (var i = 0; i < nomes.Count; i++)
+                Console.WriteLine(nomes[i]);
+        }
+
+        static void TesteListInt()
+        {
             var idades = new List<int>();
             idades.Add(1);
             idades.Add(2);
             // idades.AddRange(idades);
-            idades.AdicionarVarios(2, 2, 4, 55, 63);
+            idades.AdicionarVarios(12, 32, 4, 5, 63);
 
             for (var i = 0; i < idades.Count; i++)
-            {
                 Console.WriteLine(idades[i]);
-            }
-            Console.ReadLine();
+            idades.Sort();
+            for (var i = 0; i < idades.Count; i++)
+                Console.WriteLine(idades[i]);
         }
 
         static void TesteContaCorrente()
