@@ -4,6 +4,7 @@ using ByteBank.Modelos;
 using ByteBank.SistemaAgencia.Extensoes;
 using System.Linq;
 using System.IO;
+using System.Text;
 namespace ByteBank.SistemaAgencia
 {
     class Program
@@ -30,11 +31,16 @@ namespace ByteBank.SistemaAgencia
 
         static void EscreverBuffer(byte[] buffer)
         {
-            foreach (var meuByte in buffer)
-            {
-                Console.Write(meuByte);
-                Console.Write(" ");
-            }
+
+            // var utf8 = new UTF8Encoding();
+            var utf8 = Encoding.UTF8;
+            var texto = utf8.GetString(buffer);
+            Console.Write(texto);
+            // foreach (var meuByte in buffer)
+            // {
+            //     Console.Write(meuByte);
+            //     Console.Write(" ");
+            // }
         }
 
 
