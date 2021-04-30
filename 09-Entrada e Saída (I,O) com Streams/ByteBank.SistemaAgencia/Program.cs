@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System;
-using ByteBank.Modelos;
-using ByteBank.SistemaAgencia.Extensoes;
 using System.Linq;
 using System.IO;
 using System.Text;
