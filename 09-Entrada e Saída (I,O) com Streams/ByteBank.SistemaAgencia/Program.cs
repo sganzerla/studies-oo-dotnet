@@ -32,7 +32,7 @@ namespace ByteBank.SistemaAgencia
 
         static ContaCorrente ConverterStringParaContaCorrente(string linha)
         {
-            var campos = linha.Split(' ');
+            var campos = linha.Split(',');
             var agencia = campos[0];
             var numero = campos[1];
             var saldo = campos[2].Replace('.', ',');
