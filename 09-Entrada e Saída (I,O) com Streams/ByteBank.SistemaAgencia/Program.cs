@@ -5,28 +5,29 @@ using System.IO;
 using System.Text;
 namespace ByteBank.SistemaAgencia
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
+            // LidandoComFileStreamDiretamente();
 
             var enderecoDoArquivo = "../contas.txt";
-
-            using (var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
+            using (var fluxoDeArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
             {
-                var buffer = new byte[1024];
-
-                var numeroDeBytesLidos = -1;
-
-                while (numeroDeBytesLidos != 0)
+                using (var leitor = new StreamReader(fluxoDeArquivo))
                 {
-                    numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
-                    EscreverBuffer(buffer, numeroDeBytesLidos);
+                    while (!leitor.EndOfStream)
+                    {
+                        var linha = leitor.ReadLine();
+                        Console.WriteLine(linha);
+                    }
+
                 }
             }
 
             Console.ReadLine();
         }
+
 
         static void EscreverBuffer(byte[] buffer, int bytesLidos)
         {
