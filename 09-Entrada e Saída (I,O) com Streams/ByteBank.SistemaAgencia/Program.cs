@@ -14,12 +14,13 @@ namespace ByteBank.SistemaAgencia
             var enderecoDoArquivo = "../contas.txt";
             using (var fluxoDeArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
             {
-                using (var leitor = new StreamReader(fluxoDeArquivo))
+                using (var leitor = new StreamReader(fluxoDeArquivo, Encoding.UTF8))
                 {
                     while (!leitor.EndOfStream)
                     {
                         var linha = leitor.ReadLine();
-                        Console.WriteLine(linha);
+                        var contaCorrente = ConverterStringParaContaCorrente(linha);
+                        Console.WriteLine($"{ contaCorrente.Titular.Nome } Conta número: {contaCorrente.Numero}, agência: {contaCorrente.Agencia}, saldo: { contaCorrente.Saldo }");
                     }
 
                 }
@@ -28,6 +29,22 @@ namespace ByteBank.SistemaAgencia
             Console.ReadLine();
         }
 
+
+        static ContaCorrente ConverterStringParaContaCorrente(string linha)
+        {
+            var campos = linha.Split(' ');
+            var agencia = campos[0];
+            var numero = campos[1];
+            var saldo = campos[2].Replace('.', ',');
+            var nomeTitular = campos[3];
+
+            var titular = new Cliente(nomeTitular);
+
+            var resultado = new ContaCorrente(int.Parse(agencia), int.Parse(numero));
+            resultado.Depositar(double.Parse(saldo));
+            resultado.Titular = titular;
+            return resultado;
+        }
 
         static void EscreverBuffer(byte[] buffer, int bytesLidos)
         {
