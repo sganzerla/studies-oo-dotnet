@@ -11,11 +11,12 @@ namespace ByteBank.SistemaAgencia
              // ConverterStringParaContaCorrente();
 
             CriarArquivo();
+            CriarArquivoComWriter();
              Console.ReadLine();
         }
 
 
-        static ContaCorrente ConverterStringParaContaCorrente(string linha)
+        private static ContaCorrente ConverterStringParaContaCorrente(string linha)
         {
             var campos = linha.Split(',');
             var agencia = campos[0];
