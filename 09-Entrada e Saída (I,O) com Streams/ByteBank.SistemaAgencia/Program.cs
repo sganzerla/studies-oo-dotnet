@@ -10,9 +10,10 @@ namespace ByteBank.SistemaAgencia
 
              // ConverterStringParaContaCorrente();
 
-            CriarArquivo();
-            CriarArquivoComWriter();
-             Console.ReadLine();
+            // CriarArquivo();
+            // CriarArquivoComWriter();
+            TestaEscrita(); 
+            Console.ReadLine();
         }
 
 

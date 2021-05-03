@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 
 namespace ByteBank.SistemaAgencia
@@ -28,6 +29,27 @@ namespace ByteBank.SistemaAgencia
                 using (var escritor = new StreamWriter(fluxoDeArquivo))
                 {
                     escritor.Write("2323,232323,2323.0, Félix Almeida");
+                }
+                {
+                    
+                }
+            }
+        }
+
+        static void TestaEscrita(){
+
+            var caminhoNovoArquivo = "../contasExportadas.csv";
+            using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+            {
+                using (var escritor = new StreamWriter(fluxoDeArquivo))
+                {
+                    for (int i = 0; i < 100000; i++)
+                    {
+                        escritor.WriteLine($"Linha {i}");
+                        escritor.Flush(); //  Despeja o buffer para o Stream, grava agora o texto
+                        Console.WriteLine($"Linha {i} foi escrita no arquivo. Tecle enter para adicionar novamente.");
+                        Console.ReadLine();
+                    }
                 }
                 {
                     
