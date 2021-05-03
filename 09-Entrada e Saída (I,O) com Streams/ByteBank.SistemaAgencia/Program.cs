@@ -1,40 +1,66 @@
-﻿using System.Collections.Generic;
-using System;
-using ByteBank.Modelos;
-using ByteBank.SistemaAgencia.Extensoes;
-using System.Linq;
+﻿using System;
 using System.IO;
 using System.Text;
 namespace ByteBank.SistemaAgencia
 {
-    class Program
+    partial class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
+            // LidandoComFileStreamDiretamente();
 
-            var enderecoDoArquivo = "../contas.txt";
+             // ConverterStringParaContaCorrente();
 
-            var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open);
+            // CriarArquivo();
+            
+            // CriarArquivoComWriter();
+            
+            // TestaEscrita(); 
+            
+            // EscritaBinaria();
+            // LeituraBinaria();
 
-            var buffer = new byte[1024];
+            // UsarStreamDeEntrada();
 
-            var numeroDeBytesLidos = -1;
+            var bytesArquivo = File.ReadAllBytes("contas.txt");
+            Console.WriteLine($"Arquivo contas.txt possui {bytesArquivo.Length} bytes.");
+            
+            var linhas =  File.ReadAllLines("contas.txt");
+            Console.WriteLine($"../Arquivo contas.txt tem {linhas.Length} linhas.");
 
-            while (numeroDeBytesLidos != 0)
-            {
-                numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
-                EscreverBuffer(buffer);
-            }
-
+            File.WriteAllText("escrevendoComAClasseFile.txt", $"Sempre que o arquivo for pequeno para ler ou para gravar pode-se utilizar a classe File.");
+            
+           foreach (var linha in linhas)
+           {
+               Console.WriteLine(linha);
+           }
+           
             Console.ReadLine();
         }
 
-        static void EscreverBuffer(byte[] buffer)
+
+        private static ContaCorrente ConverterStringParaContaCorrente(string linha)
+        {
+            var campos = linha.Split(',');
+            var agencia = campos[0];
+            var numero = campos[1];
+            var saldo = campos[2].Replace('.', ',');
+            var nomeTitular = campos[3];
+
+            var titular = new Cliente(nomeTitular);
+
+            var resultado = new ContaCorrente(int.Parse(agencia), int.Parse(numero));
+            resultado.Depositar(double.Parse(saldo));
+            resultado.Titular = titular;
+            return resultado;
+        }
+
+        static void EscreverBuffer(byte[] buffer, int bytesLidos)
         {
 
             // var utf8 = new UTF8Encoding();
             var utf8 = Encoding.UTF8;
-            var texto = utf8.GetString(buffer);
+            var texto = utf8.GetString(buffer, 0, bytesLidos);
             Console.Write(texto);
             // foreach (var meuByte in buffer)
             // {

@@ -1,10 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\ByteBank.Modelos\ByteBank.Modelos.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.8.26" />
   </ItemGroup>
 

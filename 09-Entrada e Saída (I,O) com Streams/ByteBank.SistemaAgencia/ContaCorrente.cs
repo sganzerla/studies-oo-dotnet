@@ -1,6 +1,6 @@
 using System;
 
-namespace ByteBank.Modelos
+namespace ByteBank.SistemaAgencia
 {
     /// <summary>
     /// Define uma Conta Corrente do banco ByteBank
@@ -9,9 +9,10 @@ namespace ByteBank.Modelos
     {
         public static double TaxaOperacao { get; private set; }
         public static int TotalDeContasCriadas { get; private set; }
-        public Cliente Titular { get; private set; }
         public int ContadorSaquesNaoPermitidos { get; private set; }
         public int ContadorTransferenciasNaoPermitidas { get; private set; }
+        public Cliente Titular { get; set; }
+
         public int Agencia { get; }
         public int Numero { get; }
         private double _saldo = 100;
@@ -33,13 +34,9 @@ namespace ByteBank.Modelos
         /// <summary>
         /// Cria uma instância de ContaCorrente com os arumentos utilizados
         /// </summary>
-        /// <param name="cliente">Representa o valor da propriedade <see cref="Cliente"/> </param>
         /// <param name="agencia">Representa o valor da propriedade <see cref="Agencia"/> e deve possuir valor maior que zero </param>
         /// <param name="numero">Representa o valor da propriedade <see cref="Numero"/> e deve possuir valor maior que zero </param>
-        /// <exception cref="ArgumentException">Exceção lançada quando um valor negativo é utilizado no argumento <paramref name="agencia"/> </exception>
-        /// <exception cref="ArgumentException">Exceção lançada quando um valor negativo é utilizado no argumento <paramref name="cliente"/> </exception>
-        /// <exception cref="DivideByZeroException">Exceção lançada quando a propriedade <see cref="TaxaOperacao"/> é divida por zero. </exception>
-        public ContaCorrente(Cliente cliente, int agencia, int numero)
+        public ContaCorrente(  int agencia, int numero)
         {
 
             if (agencia <= 0)
@@ -48,7 +45,6 @@ namespace ByteBank.Modelos
             if (numero <= 0)
                 throw new ArgumentException($"Parâmetro {nameof(numero)} deve ser maior que zero.", nameof(numero));
 
-            Titular = cliente;
             Agencia = agencia;
             Numero = numero;
             TotalDeContasCriadas++;
@@ -70,20 +66,16 @@ namespace ByteBank.Modelos
         /// </summary>
         /// <param name="valor">Representa o valor que será sacado, o parâmetro <paramref name="valor"/> não pode ser menor que zero nem que o saldo da conta.</param>
         /// <exception cref="ArgumentException">Exceção será lançada quando o parâmetro <paramref name="valor"/> possuir valor menor que zero. </exception>
-        /// <exception cref="SaldoInsuficienteException">Exceção será lançada quando o parâmetro <paramref name="valor"/> possuir valor maior que a propriedade <see cref="Saldo"/>.</exception>
         public void Sacar(double valor)
         {
             if (valor < 0)
                 throw new ArgumentException("Valor inválido para o saque.", nameof(valor));
 
             if (_saldo < valor)
-            {
                 ContadorSaquesNaoPermitidos++;
-                throw new SaldoInsuficienteException(Saldo, valor);
-            }
 
             Console.WriteLine("-----------------------------------------------------------------------------");
-            Console.WriteLine("Sacando ... " + valor + " de " + Titular.Nome);
+            Console.WriteLine("Sacando ... " + valor  );
             Console.WriteLine("");
             _saldo -= valor;
         }
@@ -100,7 +92,7 @@ namespace ByteBank.Modelos
 
             _saldo += valor;
             Console.WriteLine("-----------------------------------------------------------------------------");
-            Console.WriteLine("Depositando ... " + valor + " para " + Titular.Nome);
+            Console.WriteLine("Depositando ... " + valor  );
             Console.WriteLine("");
         }
 
@@ -110,26 +102,21 @@ namespace ByteBank.Modelos
         /// <param name="valor">Representa o valor a ser transferido, não pode ser menor que zero e nem que o <see cref="Saldo"/>.</param>
         /// <param name="contaDestino">Representa o valor da conta corrente que receberá a transferência. </param>
         /// <exception cref="ArgumentException">Exceção lançada quando o parâmetro <paramref name="valor"/> recece valor menor que zero.</exception>
-        /// <exception cref="SaldoInsuficienteException">Exceção será lançada quando o parâmetro <paramref name="valor"/> possuir valor maior que a propriedade <see cref="Saldo"/>.</exception>
-        /// <exception cref="OperacaoFinanceiraException">Exceção será lançada quando o parâmetro <paramref name="valor"/> possuir valor maior que a propriedade <see cref="Saldo"/>.</exception>
         public void Transferir(double valor, ContaCorrente contaDestino)
         {
             if (valor < 0)
-            {
                 throw new ArgumentException("Valor inválido para tranferência.", nameof(valor));
-            }
 
             try
             {
                 Sacar(valor);
             }
-            catch (SaldoInsuficienteException ex)
+            catch (Exception ex)
             {
                 ContadorTransferenciasNaoPermitidas++;
-                throw new OperacaoFinanceiraException("Exception protegendo informações.", ex);
             }
             Console.WriteLine("-----------------------------------------------------------------------------");
-            Console.WriteLine("Transferindo ... " + valor + " de " + Titular.Nome + " para " + contaDestino.Titular.Nome);
+            Console.WriteLine("Transferindo ... " + valor     );
             Console.WriteLine("");
             contaDestino.Depositar(valor);
         }
@@ -147,7 +134,6 @@ namespace ByteBank.Modelos
         public void WriteLine()
         {
             Console.WriteLine("--------------------------------------");
-            Console.WriteLine("Titular: " + Titular.Nome);
             Console.WriteLine("Agência: " + Agencia);
             Console.WriteLine("Número: " + Numero);
             Console.WriteLine("Saldo: " + Saldo);
