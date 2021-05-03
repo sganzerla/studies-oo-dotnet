@@ -8,9 +8,10 @@ namespace ByteBank.SistemaAgencia
         {
             // LidandoComFileStreamDiretamente();
 
-             ConverterStringParaContaCorrente();
+             // ConverterStringParaContaCorrente();
 
-            Console.ReadLine();
+            CriarArquivo();
+             Console.ReadLine();
         }
 
 
