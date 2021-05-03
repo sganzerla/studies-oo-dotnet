@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 namespace ByteBank.SistemaAgencia
 {
@@ -19,8 +20,21 @@ namespace ByteBank.SistemaAgencia
             // EscritaBinaria();
             // LeituraBinaria();
 
-            UsarStreamDeEntrada();
+            // UsarStreamDeEntrada();
+
+            var bytesArquivo = File.ReadAllBytes("contas.txt");
+            Console.WriteLine($"Arquivo contas.txt possui {bytesArquivo.Length} bytes.");
             
+            var linhas =  File.ReadAllLines("contas.txt");
+            Console.WriteLine($"../Arquivo contas.txt tem {linhas.Length} linhas.");
+
+            File.WriteAllText("escrevendoComAClasseFile.txt", $"Sempre que o arquivo for pequeno para ler ou para gravar pode-se utilizar a classe File.");
+            
+           foreach (var linha in linhas)
+           {
+               Console.WriteLine(linha);
+           }
+           
             Console.ReadLine();
         }
 
