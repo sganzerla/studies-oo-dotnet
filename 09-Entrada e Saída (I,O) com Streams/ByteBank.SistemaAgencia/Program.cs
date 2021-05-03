@@ -16,8 +16,10 @@ namespace ByteBank.SistemaAgencia
             
             // TestaEscrita(); 
             
-            EscritaBinaria();
-            LeituraBinaria();
+            // EscritaBinaria();
+            // LeituraBinaria();
+
+            UsarStreamDeEntrada();
             
             Console.ReadLine();
         }
