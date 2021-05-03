@@ -4,15 +4,21 @@ namespace ByteBank.SistemaAgencia
 {
     partial class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // LidandoComFileStreamDiretamente();
 
              // ConverterStringParaContaCorrente();
 
             // CriarArquivo();
+            
             // CriarArquivoComWriter();
-            TestaEscrita(); 
+            
+            // TestaEscrita(); 
+            
+            EscritaBinaria();
+            LeituraBinaria();
+            
             Console.ReadLine();
         }
 
